@@ -29,15 +29,6 @@ namespace project_quiz
             dictSize = myOrderedDictionary.Count;
         }
 
-        public void SetQuestion(ICollection keyCollection, ICollection valueCollection, int dictionarySize)
-        
-            Random rnd = new Random();
-            int fråga = rnd.Next(dictionarySize - 1);
-
-            // Displays the contents of the OrderedDictionary
-            Console.WriteLine(keyCollection);        
-        }
-
         public string GetKey(ICollection keyCollection, int dictionarySize, int index)
         {
             String[] myKeys = new String[dictionarySize];
