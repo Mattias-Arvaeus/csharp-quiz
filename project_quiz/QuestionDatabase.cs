@@ -19,29 +19,38 @@ namespace project_quiz
         ICollection keyCollection;
         ICollection valueCollection;
 
+        int dictSize;
+
 
         public QuestionDatabase()
         {
             keyCollection = myOrderedDictionary.Keys;
             valueCollection = myOrderedDictionary.Values;
-
+            dictSize = myOrderedDictionary.Count;
         }
 
         public void SetQuestion(ICollection keyCollection, ICollection valueCollection, int dictionarySize)
-        {
-            String[] myKeys = new String[dictionarySize];
-            String[] myValues = new String[dictionarySize];
-
-            keyCollection.CopyTo(myKeys, 0);
-            valueCollection.CopyTo(myValues, 0);
-
+        
             Random rnd = new Random();
             int fråga = rnd.Next(dictionarySize - 1);
 
             // Displays the contents of the OrderedDictionary
-            Console.WriteLine(myKeys[fråga] + " " + myValues[fråga]);
+            Console.WriteLine(keyCollection);        
+        }
 
-            
+        public string GetKey(ICollection keyCollection, int dictionarySize, int index)
+        {
+            String[] myKeys = new String[dictionarySize];
+            keyCollection.CopyTo(myKeys, 0);
+            return myKeys[index];
+        }
+
+        public string GetValue(ICollection valueCollection, int dictionarySize, int index)
+        {
+            String[] myValues = new String[dictionarySize];
+            valueCollection.CopyTo(myValues, 0);
+
+            return myValues[index];
         }
 
     }
