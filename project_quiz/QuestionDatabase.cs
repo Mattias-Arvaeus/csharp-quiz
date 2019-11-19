@@ -6,6 +6,8 @@ namespace project_quiz
 {
     public class QuestionDatabase
     {
+
+
         OrderedDictionary myOrderedDictionary = new OrderedDictionary()
             {
                 {"Sverige", "Stockholm"},
@@ -17,31 +19,37 @@ namespace project_quiz
         ICollection keyCollection;
         ICollection valueCollection;
 
+
         public QuestionDatabase()
         {
             keyCollection = myOrderedDictionary.Keys;
             valueCollection = myOrderedDictionary.Values;
-
-            // Display the contents using the key and value collections
-            DisplayContents(keyCollection, valueCollection, myOrderedDictionary.Count);
+            dictSize = myOrderedDictionary.Count;
         }
 
-        public void Addquestion(string land,string  stad)
-        {
-
-        }
-        public void DisplayContents(ICollection keyCollection, ICollection valueCollection, int dictionarySize)
-        {
-            String[] myKeys = new String[dictionarySize];
-            String[] myValues = new String[dictionarySize];
-            keyCollection.CopyTo(myKeys, 0);
-            valueCollection.CopyTo(myValues, 0);
-
+        public void SetQuestion(ICollection keyCollection, ICollection valueCollection, int dictionarySize)
+        
             Random rnd = new Random();
             int fråga = rnd.Next(dictionarySize - 1);
 
             // Displays the contents of the OrderedDictionary
-            Console.WriteLine(myKeys[fråga] + myValues[fråga]);
+            Console.WriteLine(keyCollection);        
         }
+
+        public string GetKey(ICollection keyCollection, int dictionarySize, int index)
+        {
+            String[] myKeys = new String[dictionarySize];
+            keyCollection.CopyTo(myKeys, 0);
+            return myKeys[index];
+        }
+
+        public string GetValue(ICollection valueCollection, int dictionarySize, int index)
+        {
+            String[] myValues = new String[dictionarySize];
+            valueCollection.CopyTo(myValues, 0);
+
+            return myValues[index];
+        }
+
     }
 }
