@@ -17,7 +17,6 @@ namespace project_quiz
         ICollection keyCollection;
         ICollection valueCollection;
 
-
         public QuestionDatabase()
         {
             keyCollection = myOrderedDictionary.Keys;

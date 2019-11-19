@@ -15,6 +15,8 @@ namespace project_quiz
         {
             this.land = land;
             this.answer = answer;
+
+            
         }
 
         public bool CheckAnswer(string userAnswer)
