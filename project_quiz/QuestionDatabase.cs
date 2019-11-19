@@ -19,8 +19,6 @@ namespace project_quiz
         ICollection keyCollection;
         ICollection valueCollection;
 
-        int dictSize;
-
 
         public QuestionDatabase()
         {

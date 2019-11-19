@@ -9,6 +9,27 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-
+        <StackPanel>
+            <TextBlock x:Name="Title" 
+                       Text="Frågesport" 
+                       FontSize="100"
+                       Style="{StaticResource HeaderTextBlockStyle}" 
+                       TextAlignment="Center"/>
+            <TextBlock x:Name="QuestionNumber" 
+                       Text="0/10" 
+                       FontSize="50" 
+                       TextAlignment="Center"/>
+            <TextBlock x:Name="QuestionBlock" 
+                       Text="Example" 
+                       FontSize="75" 
+                       Style="{StaticResource BaseTextBlockStyle}" 
+                       TextAlignment="Center"/>
+            <Button x:Name="SubmitBtn1" Content="Fuck"
+                    Click="SubmitBtn1_Click" ClickMode="Press"
+                    Margin="0, 10"
+                    HorizontalAlignment="Center"
+                    FontSize="60"/>
+        </StackPanel>
+        
     </Grid>
 </Page>

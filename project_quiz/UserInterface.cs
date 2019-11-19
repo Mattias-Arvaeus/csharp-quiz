@@ -13,8 +13,9 @@ namespace project_quiz
         private int correctCount;
         private Random numGen = new Random();
 
-        private QuestionDatabase DB;
+        private QuestionDatabase Database = new QuestionDatabase();
 
+        
         public UserInterface()
         {
             this.questionCount = 0;
@@ -25,6 +26,7 @@ namespace project_quiz
         {
             int questionIndex = numGen.Next();
 
+            
         }
 
         public void DisplayCounter()
