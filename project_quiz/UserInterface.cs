@@ -11,6 +11,9 @@ namespace project_quiz
         private string answer;
         private int questionCount;
         private int correctCount;
+        private Random numGen = new Random();
+
+        private QuestionDatabase DB;
 
         public UserInterface()
         {
@@ -20,6 +23,7 @@ namespace project_quiz
 
         public void DisplayQuestion(Question question)
         {
+            int questionIndex = numGen.Next();
 
         }
 
