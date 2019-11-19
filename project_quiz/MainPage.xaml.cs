@@ -26,5 +26,10 @@ namespace project_quiz
         {
             this.InitializeComponent();
         }
+
+        private void SubmitBtn1_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
