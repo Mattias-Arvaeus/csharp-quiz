@@ -27,9 +27,11 @@ namespace project_quiz
             DisplayContents(keyCollection, valueCollection, myOrderedDictionary.Count);
         }
 
+        public void Addquestion(string land,string  stad)
+        {
 
-        public void DisplayContents(
-            ICollection keyCollection, ICollection valueCollection, int dictionarySize)
+        }
+        public void DisplayContents(ICollection keyCollection, ICollection valueCollection, int dictionarySize)
         {
             String[] myKeys = new String[dictionarySize];
             String[] myValues = new String[dictionarySize];
@@ -37,7 +39,7 @@ namespace project_quiz
             valueCollection.CopyTo(myValues, 0);
 
             Random rnd = new Random();
-            int fråga = rnd.Next(4);
+            int fråga = rnd.Next(dictionarySize - 1);
 
             // Displays the contents of the OrderedDictionary
             Console.WriteLine(myKeys[fråga] + myValues[fråga]);
