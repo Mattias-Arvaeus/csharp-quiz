@@ -8,7 +8,7 @@ namespace project_quiz
 {
     class Question
     {
-        private string land;
+        private string land; 
         private string answer;
 
         public Question(string land, string answer)
