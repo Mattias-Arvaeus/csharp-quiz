@@ -34,9 +34,14 @@ namespace project_quiz
             this.correctCount = 0;
         }
 
-        public void DisplayQuestion(Question aQuestion)
+        /*public void DisplayQuestion(Question aQuestion)
         {
 
+        }*/
+
+        public string PrintQuestion(Question question)
+        {
+            return string.Format("vilken är {0} huvudstad?", question.Land);
         }
 
         public void DisplayCounter()
@@ -62,6 +67,8 @@ namespace project_quiz
             valueCollection.CopyTo(myValues, 0);
 
             aQuestion = new Question(myKeys[questionNr], myValues[questionNr]);
+
+            PrintQuestion(aQuestion);
         }
 
         public int GetRandomNr()

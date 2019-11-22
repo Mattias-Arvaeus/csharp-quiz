@@ -6,8 +6,6 @@ namespace project_quiz
 {
     public class QuestionDatabase
     {
-
-
         OrderedDictionary databas = new OrderedDictionary()
             {
                 {"Sverige", "Stockholm"},
