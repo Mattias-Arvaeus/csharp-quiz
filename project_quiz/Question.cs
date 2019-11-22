@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace project_quiz
 {
     class Question
@@ -14,9 +15,7 @@ namespace project_quiz
         public Question(string land, string answer)
         {
             this.land = land;
-            this.answer = answer;
-
-            
+            this.answer = answer;        
         }
 
         public bool CheckAnswer(string userAnswer)
@@ -46,5 +45,6 @@ namespace project_quiz
                 return answer;
             }
         }
+        
     }
 }
