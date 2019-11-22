@@ -21,10 +21,11 @@ namespace project_quiz
         ICollection valueCollection;
 
         private Random numGen = new Random();
-
         private QuestionDatabase theDatabase = new QuestionDatabase();
 
         OrderedDictionary dict = new OrderedDictionary();
+
+        public Question aQuestion;
 
         
         public UserInterface()
@@ -33,14 +34,14 @@ namespace project_quiz
             this.correctCount = 0;
         }
 
-        public void DisplayQuestion(Question question)
+        public void DisplayQuestion(Question aQuestion)
         {
-                  
+
         }
 
         public void DisplayCounter()
         {
-
+            questionCount += 1;
         }
 
         public void GetQuestionFromDatabase()
@@ -60,8 +61,7 @@ namespace project_quiz
             keyCollection.CopyTo(myKeys, 0);
             valueCollection.CopyTo(myValues, 0);
 
-            this.question = myKeys[questionNr];
-            this.answer = myValues[questionNr];
+            aQuestion = new Question(myKeys[questionNr], myValues[questionNr]);
         }
 
         public int GetRandomNr()
