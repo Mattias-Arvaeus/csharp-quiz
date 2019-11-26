@@ -59,7 +59,7 @@ namespace project_quiz
             this.dictSize = dict.Count;
         }
 
-        public void SetQuestion(int questionNr)
+        public Question SetQuestion(int questionNr)
         {
             String[] myKeys = new String[dictSize];
             String[] myValues = new String[dictSize];
@@ -69,7 +69,7 @@ namespace project_quiz
 
             aQuestion = new Question(myKeys[questionNr], myValues[questionNr]);
 
-            PrintQuestion(aQuestion);
+            return aQuestion;
         }
 
         public int GetRandomNr()

@@ -25,10 +25,32 @@ namespace project_quiz
         public MainPage()
         {
             this.InitializeComponent();
+
+            // starta frågesporten
+            UserInterface
+            // visa första frågan och svarsalternativen
         }
 
         private void SubmitBtn1_Click(object sender, RoutedEventArgs e)
         {
+            // Kolla om detta alternativ är rätt
+            // för statistik
+            // visa statistik 4 av 8 och nästa fråga med alternativ
+        }
+
+        private void SubmitBtn2_Click(object sender, RoutedEventArgs e)
+        {
+            // Kolla om detta alternativ är rätt
+            // för statistik
+            // visa statistik 4 av 8 och nästa fråga med alternativ
+
+        }
+
+        private void SubmitBtn3_Click(object sender, RoutedEventArgs e)
+        {
+            // Kolla om detta alternativ är rätt
+            // för statistik
+            // visa statistik 4 av 8 och nästa fråga med alternativ
 
         }
     }
