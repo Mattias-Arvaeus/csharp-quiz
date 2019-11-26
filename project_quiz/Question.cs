@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace project_quiz
 {
-    class Question
+    public class Question
     {
         private string land; 
         private string answer;
@@ -19,6 +19,7 @@ namespace project_quiz
         {
             this.land = land;
             this.answer = answer;
+
             svarsalternativ = new List<string>();
             svarsalternativ.Add(answer);
             svarsalternativ.Add(fel1);
@@ -32,9 +33,14 @@ namespace project_quiz
                 string temp = svarsalternativ[random];
                 svarsalternativ[random] = svarsalternativ[random1];
                 svarsalternativ[random1] = temp;
+
+                i++;
             }
-            
-            
+        }
+
+        public List<string> Getoptions()
+        {
+            return svarsalternativ;
         }
 
         public bool CheckAnswer(string userAnswer)
@@ -64,6 +70,10 @@ namespace project_quiz
                 return answer;
             }
         }
-        
+        public string PrintQuestion()
+        {
+            return string.Format("vilken är {0} huvudstad?", land);
+        }
+
     }
 }

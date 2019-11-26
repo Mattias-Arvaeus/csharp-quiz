@@ -35,11 +35,6 @@ namespace project_quiz
             this.correctCount = 0;
         }
 
-        /*public void DisplayQuestion(Question aQuestion)
-        {
-
-        }*/
-
         public string PrintQuestion(Question question)
         {
             return string.Format("vilken är {0} huvudstad?", question.Land);
@@ -60,18 +55,7 @@ namespace project_quiz
             this.dictSize = dict.Count;
         }
 
-        public Question SetQuestion(int questionNr)
-        {
-            String[] myKeys = new String[dictSize];
-            String[] myValues = new String[dictSize];
-
-            keyCollection.CopyTo(myKeys, 0);
-            valueCollection.CopyTo(myValues, 0);
-
-            aQuestion = new Question(myKeys[questionNr], myValues[questionNr]);
-
-            return aQuestion;
-        }
+        
         public string SetAlt(int questionNr)
         {
             String[] myValues = new String[dictSize];
@@ -82,10 +66,7 @@ namespace project_quiz
 
         }
 
-        public int GetRandomNr()
-        {
-            return numGen.Next(0, dictSize);
-        }
+        
 
     }
 }

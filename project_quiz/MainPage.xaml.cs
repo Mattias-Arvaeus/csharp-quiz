@@ -22,17 +22,33 @@ namespace project_quiz
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private Deck deck;
+        private Question currentQuestion;
+
         public MainPage()
         {
             this.InitializeComponent();
 
             // starta frågesporten
-            UserInterface frågesport = new UserInterface();
-            // visa första frågan och svarsalternativen
+            // setup
+            // gör databas
+            QuestionDatabase database = new QuestionDatabase();
+
+            // databas - > get deck
+            deck = database.GetDeck();
+            // deck->RemoveQuestion ger en fråga
+            currentQuestion = deck.RemoveQuestion();
+
+            // visa första frågan och svarsalternativen i GUI
+            QuestionBlock.Text = currentQuestion.PrintQuestion();
+            // spara frågan i en objektvariabel så att vi kan kolla om svaret är rätt
+
+
+
         }
 
         private void SubmitBtn1_Click(object sender, RoutedEventArgs e)
-        {
+        { 
             // Kolla om detta alternativ är rätt
             // för statistik
             // visa statistik 4 av 8 och nästa fråga med alternativ
