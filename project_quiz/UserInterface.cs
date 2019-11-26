@@ -47,6 +47,7 @@ namespace project_quiz
         public void DisplayCounter()
         {
             questionCount += 1;
+            //
         }
 
         public void GetQuestionFromDatabase()
