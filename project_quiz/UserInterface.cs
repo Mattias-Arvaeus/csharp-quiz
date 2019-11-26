@@ -21,6 +21,7 @@ namespace project_quiz
         ICollection valueCollection;
 
         private Random numGen = new Random();
+
         private QuestionDatabase theDatabase = new QuestionDatabase();
 
         OrderedDictionary dict = new OrderedDictionary();
@@ -70,6 +71,15 @@ namespace project_quiz
             aQuestion = new Question(myKeys[questionNr], myValues[questionNr]);
 
             return aQuestion;
+        }
+        public string SetAlt(int questionNr)
+        {
+            String[] myValues = new String[dictSize];
+
+            valueCollection.CopyTo(myValues, 0);
+
+            return  myValues[questionNr];
+
         }
 
         public int GetRandomNr()

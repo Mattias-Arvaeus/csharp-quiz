@@ -27,7 +27,7 @@ namespace project_quiz
             this.InitializeComponent();
 
             // starta frågesporten
-            UserInterface
+            UserInterface frågesport = new UserInterface();
             // visa första frågan och svarsalternativen
         }
 
