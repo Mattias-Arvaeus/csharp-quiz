@@ -6,55 +6,107 @@ namespace project_quiz
 {
     public class QuestionDatabase
     {
+        Random rnd = new Random();
+
+        public int noQuestions { get; set; }
+        public int noRightAnswear { get; set; }
+
+        ICollection keyCollection;
+        ICollection valueCollection;
+
         OrderedDictionary databas = new OrderedDictionary()
             {
                 {"Sverige", "Stockholm"},
                 {"Danmark", "Köpenhamn"},
                 {"Norge", "Oslo"},
-                { "Finland", "Helsingfors"}
+                { "Finland", "Helsingfors"},
+                {"Island", "Reykjavik"},
+                {"Storbritannien", "London" },
+                {"Frankrike", "Paris" },
+                {"Tyskland", "Berlin" },
+                {"Polen", "Warszawa" },
+                {"Spanien", "Madrid" },
+                {"Portugal", "Lissabon" },
+                {"Nederländerna", "Amsterdam" },
+                {"Italien", "Rom" },
+                {"Österrike", "Wien" },
+                {"Tjeckien", "Prag" }
             };
 
         public QuestionDatabase()
         {
-            
+            noQuestions = databas.Count;
+            noRightAnswear = 0;
         }
-
-        public Deck GetDeck()
+        public Deck MakeDeck()
         {
+            keyCollection = databas.Keys;
+            valueCollection = databas.Values;
+
             Deck deck = new Deck();
-            Question question = new Question("land", "answer", "fel 1", "fel 2");
-            deck.AddQuestion(question);
-            return deck;
-        }
-
-        public OrderedDictionary GetDatabase()
-        {
-            return databas;
-        }
-        /*
-        public Question SetQuestion(int questionNr)
-        {
-            String[] myKeys = new String[dictSize];
-            String[] myValues = new String[dictSize];
+            String[] myKeys = new String[databas.Count];
+            String[] myValues = new String[databas.Count];
 
             keyCollection.CopyTo(myKeys, 0);
             valueCollection.CopyTo(myValues, 0);
 
-            aQuestion = new Question(myKeys[questionNr], myValues[questionNr]);
+            for (int i = 0; i < databas.Count; i++)
+            {
+                String[] fel = AnswearAlternatives();
 
-            return aQuestion;
+                while (!TestEqualAlternatives(myValues, fel, i))
+                {
+                    fel = AnswearAlternatives();
+                }
+                Question aQuestion = new Question(myKeys[i], myValues[i], fel[0], fel[1]);
+                deck.AddQuestion(aQuestion);
+            }
+            return deck;
         }
-        */
-        public Question question()
+
+        public String[] AnswearAlternatives()
         {
-            return null;
+
+            valueCollection = databas.Values;
+            String[] myValues = new String[databas.Count];
+            valueCollection.CopyTo(myValues, 0);
+
+            String[] newValues = new string[2];
+            for (int i = 0; i < 2; i++)
+            {
+                int random = rnd.Next(0, databas.Count - 1);
+                newValues[i] = myValues[random];
+            }
+            return newValues;
         }
-        /*
-        public int GetRandomNr()
+
+        public string PrintScore(int AnswearAsBool)
         {
-            return numGen.Next(0, dictSize);
+            noRightAnswear += AnswearAsBool;
+            string s = $"{ noRightAnswear } / {noQuestions }";
+            return s;
+
         }
-        */
+        //TODO - FIx
+        public bool TestEqualAlternatives(String[]answear, String[] fel, int index)
+        {
+            if (answear[index] != fel[0] && answear[index] != fel[1])
+            {
+                if (fel[0] != fel[1])
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
 
     }
 }

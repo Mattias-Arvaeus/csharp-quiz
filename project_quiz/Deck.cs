@@ -9,7 +9,10 @@ namespace project_quiz
     public class Deck
     {
         // lista med frågor
-        List<Question> questions = new List<Question>();
+        public List<Question> questions = new List<Question>();
+        public int NoOfQuestions;
+
+        Random rnd = new Random();
         public Deck()
         {
 
@@ -23,14 +26,37 @@ namespace project_quiz
         public Question RemoveQuestion()
         {
             // ta bort sista frågan
-            Question question = questions[questions.Count - 1];
-            questions.RemoveAt(questions.Count - 1);
-            return question;
+            if (questions.Count == 0)
+            {
+                return null;
+            }
+            else
+            {
+                Question question = questions[questions.Count - 1];
+                questions.RemoveAt(questions.Count - 1);
+                return question;
+            }
         }
 
         public void Shuffle()
         {
 
+        }
+        public bool IfListisZero()
+        {
+            if (questions.Count == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public int CountQuestions()
+        {
+            return questions.Count;
         }
     }
 }

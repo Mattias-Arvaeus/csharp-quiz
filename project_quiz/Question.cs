@@ -12,7 +12,7 @@ namespace project_quiz
         private string land; 
         private string answer;
 
-        List<string> svarsalternativ;
+        public List<string> svarsalternativ;
         Random numGen = new Random();
 
         public Question(string land, string answer, string fel1, string fel2)
@@ -25,7 +25,7 @@ namespace project_quiz
             svarsalternativ.Add(fel1);
             svarsalternativ.Add(fel2);
 
-            for (int i = 10; i < 10; i++)
+            for (int i = 0; i < 10; i++)
             {
                 int random = numGen.Next(0, svarsalternativ.Count);
                 int random1 = numGen.Next(0, svarsalternativ.Count);
@@ -72,7 +72,12 @@ namespace project_quiz
         }
         public string PrintQuestion()
         {
-            return string.Format("vilken är {0} huvudstad?", land);
+            return $"vad är { land }s huvudstad?";
+        }
+
+        public List<string> Alternativ()
+        {
+            return svarsalternativ;
         }
 
     }

@@ -24,7 +24,8 @@ namespace project_quiz
     {
         private Deck deck;
         private Question currentQuestion;
-
+        public int score { get; set; }
+        public int noOfQuestions { get; set; }
         public MainPage()
         {
             this.InitializeComponent();
@@ -34,40 +35,88 @@ namespace project_quiz
             // gör databas
             QuestionDatabase database = new QuestionDatabase();
 
+
             // databas - > get deck
-            deck = database.GetDeck();
+            deck = database.MakeDeck();
+            noOfQuestions = deck.CountQuestions();
+
             // deck->RemoveQuestion ger en fråga
-            currentQuestion = deck.RemoveQuestion();
+            SetQuestions();
 
             // visa första frågan och svarsalternativen i GUI
-            QuestionBlock.Text = currentQuestion.PrintQuestion();
+
             // spara frågan i en objektvariabel så att vi kan kolla om svaret är rätt
-
-
-
         }
 
         private void SubmitBtn1_Click(object sender, RoutedEventArgs e)
-        { 
-            // Kolla om detta alternativ är rätt
-            // för statistik
-            // visa statistik 4 av 8 och nästa fråga med alternativ
+        {
+            if (currentQuestion.CheckAnswer(SubmitBtn1.Content.ToString()))
+            {
+                SetQuestions();
+                AddCounter();
+            }
+            else
+            {
+                SetQuestions();
+            }
         }
 
         private void SubmitBtn2_Click(object sender, RoutedEventArgs e)
         {
-            // Kolla om detta alternativ är rätt
-            // för statistik
-            // visa statistik 4 av 8 och nästa fråga med alternativ
 
+            if (currentQuestion.CheckAnswer(SubmitBtn2.Content.ToString()))
+            {
+                SetQuestions();
+                AddCounter();
+            }
+            else
+            {
+                SetQuestions();
+            }
         }
 
         private void SubmitBtn3_Click(object sender, RoutedEventArgs e)
         {
-            // Kolla om detta alternativ är rätt
-            // för statistik
-            // visa statistik 4 av 8 och nästa fråga med alternativ
 
+            if (currentQuestion.CheckAnswer(SubmitBtn3.Content.ToString()))
+            {
+                SetQuestions();
+                AddCounter();
+            }
+            else
+            {
+                SetQuestions();
+            }
+        }
+
+        private void SetQuestions()
+        {
+            if (deck.IfListisZero())
+            {
+                QuestionBlock.Text = $"Slut på frågor. Du fick {score} av { noOfQuestions } poäng ";
+
+                SubmitBtn1.Content = null;
+                SubmitBtn2.Content = null; ;
+                SubmitBtn3.Content = null;
+            }
+            else
+            {
+                currentQuestion = deck.RemoveQuestion();
+
+                QuestionBlock.Text = currentQuestion.PrintQuestion();
+
+                SubmitBtn1.Content = currentQuestion.svarsalternativ[0];
+                SubmitBtn2.Content = currentQuestion.svarsalternativ[1];
+                SubmitBtn3.Content = currentQuestion.svarsalternativ[2];
+            }
+            
+        }
+
+        private void AddCounter()
+        {
+            score++;
+            QuestionNumber.Text = score.ToString();
+            
         }
     }
 }
