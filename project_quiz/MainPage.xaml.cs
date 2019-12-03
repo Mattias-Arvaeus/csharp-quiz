@@ -35,6 +35,8 @@ namespace project_quiz
             // gör databas
             SetUpDeckOfQuestionCards();
 
+            
+
             // visa första frågan och svarsalternativen i GUI
 
             // spara frågan i en objektvariabel så att vi kan kolla om svaret är rätt
@@ -53,6 +55,8 @@ namespace project_quiz
             // databas - > get deck
             deck = database.MakeDeck();
             noOfQuestions = deck.CountQuestions();
+            NoOfQuestionsLabel.Text = noOfQuestions.ToString();
+
 
             // deck->RemoveQuestion ger en fråga
             SetQuestions();
@@ -111,6 +115,8 @@ namespace project_quiz
                 SubmitBtn2.Visibility = Visibility.Collapsed;
                 SubmitBtn3.Visibility = Visibility.Collapsed;
                 QuestionNumber.Visibility = Visibility.Collapsed;
+                OutOflabel.Visibility = Visibility.Collapsed;
+                NoOfQuestionsLabel.Visibility = Visibility.Collapsed;
                 
             }
             else

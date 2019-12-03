@@ -49,21 +49,21 @@ namespace project_quiz
         public async Task<bool> AddQuestionsFromFile()
         {
             
-
             try
             {
                 StorageFile databaseCapital = await AwaitDatabase();
-                string databasetext = await FileIO.ReadTextAsync(databaseCapital);
-                FormatDatabase(databasetext);
+                string databaseText = await FileIO.ReadTextAsync(databaseCapital);
+                FormatDatabase(databaseText);
 
                 noQuestions = databas.Count;
                 noRightAnswear = 0;
                 return true;
             }
-            catch (SystemException)
+            catch (SystemException e)
             {
                 BackupQuestions();
                 return false;
+                
             }
         }
         public Deck MakeDeck()
@@ -133,14 +133,24 @@ namespace project_quiz
             foreach (string pair in pairs)
             {
                 String[] landStad = pair.Split(',');
-                databas.Add(landStad[0], landStad [1]);
+                if (landStad.Length > 1)
+                {
+                    databas.Add(landStad[0], landStad[1]);
+                }
+                else
+                {
+                    // felaktig rad
+                }
+                
             }
         }
 
         public async void AddQuestionToDatabase(string country,string capital)
         {
+            //TODO -- Check if question exists in database
+
             // lägg till i dictionary
-            /*
+            
             databas.Add(country, capital);
             // skriv dictionary till fil som 
             keyCollection = databas.Keys;
@@ -153,40 +163,52 @@ namespace project_quiz
             valueCollection.CopyTo(myValues, 0);
 
             string textToFile = "";
-            foreach(String countryKey in databas.Keys)
-            {
+            StorageFile databaseCapital = await AwaitDatabase();
 
-                for (int i = 0; i < databas.Count; i++)
+            //foreach (String countryKey in databas.Keys)
+            //{
+
+                for (int i = 0; i < databas.Keys.Count; i++)
                 {
-                    textToFile = $"{Environment.NewLine}{myKeys[i]},{myValues[i]}";
-
-                    StorageFile capitalFile = await AwaitDatabase();
-                    await FileIO.AppendTextAsync(capitalFile, textToFile);
+                    textToFile += $"{myKeys[i]},{myValues[i]}{Environment.NewLine}";
                 }
-                
-                //textToFile = $"{countryKey},{databas.}"
-            }*/
-            // land1,huvudstad1
-            // land2,huvudstad2
-            // ...
-            
-            string addedQuestion = $"{Environment.NewLine}{country},{capital}";
-            StorageFolder storagefolder = ApplicationData.Current.LocalFolder;
-            StorageFile databaseCapital = await storagefolder.GetFileAsync("databasecapital.txt");
-
-            await FileIO.AppendTextAsync(databaseCapital, addedQuestion);
-            
+            //}
+            await FileIO.WriteTextAsync(databaseCapital, textToFile);
         }
+
         public async void RemoveQuestionsFromDatabase(string country)
         {
-            
+            if (databas.Contains(country))
+            {
+                keyCollection = databas.Keys;
+                valueCollection = databas.Values;
+                string textToFile = "";
+
+                String[] myKeys = new String[databas.Count];
+                String[] myValues = new String[databas.Count];
+
+                keyCollection.CopyTo(myKeys, 0);
+                valueCollection.CopyTo(myValues, 0);
+
+                databas.Remove(country);
+
+                StorageFile databaseCapital = await AwaitDatabase();
+
+                for (int i = 0; i < databas.Keys.Count; i++)
+                {
+                    textToFile += $"{myKeys[i]},{myValues[i]}{Environment.NewLine}";
+                }
+                await FileIO.WriteTextAsync(databaseCapital, textToFile);
+
+            }
+
         }
 
         private async Task<StorageFile> AwaitDatabase()
         {
             StorageFolder storagefolder = ApplicationData.Current.LocalFolder;
             StorageFile databaseCapital = await storagefolder.GetFileAsync("databasecapital.txt");
-            return databaseCapital;   
+            return databaseCapital;
         }
     }
 }

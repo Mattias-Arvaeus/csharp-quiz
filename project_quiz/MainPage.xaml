@@ -19,11 +19,22 @@
                        FontSize="80"
                        Style="{StaticResource HeaderTextBlockStyle}" 
                        TextAlignment="Center"/>
-            <TextBlock x:Name="QuestionNumber" 
+            <StackPanel Orientation="Horizontal"
+                        >
+                <TextBlock x:Name="QuestionNumber" 
                        Text="0" 
                        FontSize="40" 
                        TextAlignment="Center"/>
-
+                <TextBlock x:Name="OutOflabel" 
+                       Text="/" 
+                       FontSize="40" 
+                       TextAlignment="Center"/>
+                <TextBlock x:Name="NoOfQuestionsLabel" 
+                       Text="0" 
+                       FontSize="40" 
+                       TextAlignment="Center"/>
+            </StackPanel>
+            
             <TextBlock x:Name="QuestionBlock" 
                        Text="Example" 
                        FontSize="50" 

@@ -59,7 +59,7 @@ namespace project_quiz
 
         private void RemoveQuestionButton_Click(object sender, RoutedEventArgs e)
         {
-
+            database.RemoveQuestionsFromDatabase(RemoveQuestionTextbox.Text);
         }
 
         private void textBlock_SelectionChanged(object sender, RoutedEventArgs e)
@@ -73,6 +73,10 @@ namespace project_quiz
         }
 
         private void RemoveQuestionTextbox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+        private void textBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }

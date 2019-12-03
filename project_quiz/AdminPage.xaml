@@ -10,13 +10,14 @@
 
     <Grid>
         <Button x:Name="returnButton" Content="Return" Margin="338,33,0,0" VerticalAlignment="Top" Click="returnButton_Click"/>
-        <TextBlock x:Name="addQuestionLabel" HorizontalAlignment="Left" Margin="145,138,0,0" Text="Add Question" TextWrapping="Wrap" VerticalAlignment="Top" Height="43" Width="169" SelectionChanged="textBlock_SelectionChanged" FontSize="25" RenderTransformOrigin="0.383,0.493"/>
-        <TextBox x:Name="AddCountryTextbox" HorizontalAlignment="Left" Margin="89,210,0,0" PlaceholderText="Land" TextWrapping="Wrap" VerticalAlignment="Top" Width="122" TextChanged="AddCountryTextbox_TextChanged"/>
-        <TextBox x:Name="AddCapitalTextbox" HorizontalAlignment="Left" Margin="231,210,0,0" PlaceholderText="Huvudstad" TextWrapping="Wrap" VerticalAlignment="Top" Width="122" TextChanged="AddCapitalTextbox_TextChanged"/>
-        <Button x:Name="AddQuestionButton" Content="Lägg till" Margin="0,274,0,0" VerticalAlignment="Top" Height="56" Width="162" HorizontalAlignment="Center" Click="AddQuestionButton_Click"/>
-        <TextBlock x:Name="RemoveQuestionLabel" HorizontalAlignment="Center" Margin="0,384,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Height="43" Width="172" SelectionChanged="textBlock_SelectionChanged" FontSize="30"><Run Text="T"/><Run Text="a bort fråga"/></TextBlock>
-        <TextBox x:Name="RemoveQuestionTextbox" HorizontalAlignment="Center" Margin="0,458,0,0" PlaceholderText="Land" TextWrapping="Wrap" VerticalAlignment="Top" Width="122" TextChanged="RemoveQuestionTextbox_TextChanged"/>
-        <Button x:Name="RemoveQuestionButton" Content="Button" Margin="0,520,0,0" VerticalAlignment="Top" Height="56" Width="162" HorizontalAlignment="Center" Click="RemoveQuestionButton_Click"/>
-
+        <TextBlock x:Name="addQuestionLabel" HorizontalAlignment="Left" Margin="64,49,0,0" Text="Add Question" TextWrapping="Wrap" VerticalAlignment="Top" Height="43" Width="169" SelectionChanged="textBlock_SelectionChanged" FontSize="25" RenderTransformOrigin="0.383,0.493"/>
+        <TextBox x:Name="AddCountryTextbox" HorizontalAlignment="Left" Margin="74,119,0,0" PlaceholderText="Land" TextWrapping="Wrap" VerticalAlignment="Top" Width="122" TextChanged="AddCountryTextbox_TextChanged"/>
+        <TextBox x:Name="AddCapitalTextbox" HorizontalAlignment="Left" Margin="74,172,0,0" PlaceholderText="Huvudstad" TextWrapping="Wrap" VerticalAlignment="Top" Width="122" TextChanged="AddCapitalTextbox_TextChanged"/>
+        <Button x:Name="AddQuestionButton" Content="Lägg till" Margin="54,237,0,0" VerticalAlignment="Top" Height="56" Width="162" Click="AddQuestionButton_Click"/>
+        <TextBlock x:Name="RemoveQuestionLabel" HorizontalAlignment="Left" Margin="49,347,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Height="43" Width="172" SelectionChanged="textBlock_SelectionChanged" FontSize="30"><Run Text="T"/><Run Text="a bort fråga"/></TextBlock>
+        <TextBox x:Name="RemoveQuestionTextbox" HorizontalAlignment="Left" Margin="74,421,0,0" PlaceholderText="Land" TextWrapping="Wrap" VerticalAlignment="Top" Width="122" TextChanged="RemoveQuestionTextbox_TextChanged"/>
+        <Button x:Name="RemoveQuestionButton" Content="Button" Margin="54,483,0,0" VerticalAlignment="Top" Height="56" Width="162" Click="RemoveQuestionButton_Click"/>
+        <TextBox x:Name="DatabaseLabel" HorizontalAlignment="Center" Margin="252,66,0,0" Text="Databas" TextWrapping="Wrap" VerticalAlignment="Top" Width="147" TextChanged="textBox_TextChanged"/>
+        <TextBlock x:Name="databaseTextbox" HorizontalAlignment="Left" Margin="252,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="429" Width="147"/>
     </Grid>
 </Page>
