@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -29,13 +30,26 @@ namespace project_quiz
         public MainPage()
         {
             this.InitializeComponent();
-
             // starta frågesporten
             // setup
             // gör databas
+            SetUpDeckOfQuestionCards();
+
+            // visa första frågan och svarsalternativen i GUI
+
+            // spara frågan i en objektvariabel så att vi kan kolla om svaret är rätt
+        }
+
+        private async void SetUpDeckOfQuestionCards()
+        {
             QuestionDatabase database = new QuestionDatabase();
 
-
+            bool success = await database.AddQuestionsFromFile();
+            if (!success)
+            {
+                var messageDialog = new MessageDialog("Questions have not been loaded correctly.");
+                await messageDialog.ShowAsync();
+            }
             // databas - > get deck
             deck = database.MakeDeck();
             noOfQuestions = deck.CountQuestions();
@@ -43,17 +57,13 @@ namespace project_quiz
             // deck->RemoveQuestion ger en fråga
             SetQuestions();
 
-            // visa första frågan och svarsalternativen i GUI
-
-            // spara frågan i en objektvariabel så att vi kan kolla om svaret är rätt
         }
-
         private void SubmitBtn1_Click(object sender, RoutedEventArgs e)
         {
             if (currentQuestion.CheckAnswer(SubmitBtn1.Content.ToString()))
             {
-                SetQuestions();
                 AddCounter();
+                SetQuestions();          
             }
             else
             {
@@ -66,8 +76,9 @@ namespace project_quiz
 
             if (currentQuestion.CheckAnswer(SubmitBtn2.Content.ToString()))
             {
-                SetQuestions();
                 AddCounter();
+                SetQuestions();
+                
             }
             else
             {
@@ -80,8 +91,9 @@ namespace project_quiz
 
             if (currentQuestion.CheckAnswer(SubmitBtn3.Content.ToString()))
             {
-                SetQuestions();
                 AddCounter();
+                SetQuestions();
+                
             }
             else
             {
@@ -91,13 +103,15 @@ namespace project_quiz
 
         private void SetQuestions()
         {
-            if (deck.IfListisZero())
+            if (deck.IfListIsZero())
             {
-                QuestionBlock.Text = $"Slut på frågor. Du fick {score} av { noOfQuestions } poäng ";
+                QuestionBlock.Text = $"Slut på frågor. Du fick { score } av { noOfQuestions } poäng ";
 
-                SubmitBtn1.Content = null;
-                SubmitBtn2.Content = null; ;
-                SubmitBtn3.Content = null;
+                SubmitBtn1.Visibility = Visibility.Collapsed;
+                SubmitBtn2.Visibility = Visibility.Collapsed;
+                SubmitBtn3.Visibility = Visibility.Collapsed;
+                QuestionNumber.Visibility = Visibility.Collapsed;
+                
             }
             else
             {
@@ -117,6 +131,11 @@ namespace project_quiz
             score++;
             QuestionNumber.Text = score.ToString();
             
+        }
+
+        private void Adminbutton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(AdminPage));
         }
     }
 }

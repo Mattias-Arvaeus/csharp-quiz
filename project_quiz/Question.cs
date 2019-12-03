@@ -72,7 +72,7 @@ namespace project_quiz
         }
         public string PrintQuestion()
         {
-            return $"vad är { land }s huvudstad?";
+            return $"Vad är { land }s huvudstad?";
         }
 
         public List<string> Alternativ()

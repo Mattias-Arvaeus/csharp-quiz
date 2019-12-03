@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Specialized;
+using System.Threading.Tasks;
+using Windows.Storage;
 
 namespace project_quiz
 {
@@ -14,7 +16,17 @@ namespace project_quiz
         ICollection keyCollection;
         ICollection valueCollection;
 
-        OrderedDictionary databas = new OrderedDictionary()
+        OrderedDictionary databas = new OrderedDictionary();
+        
+
+        public QuestionDatabase()
+        {
+
+        }
+        // nödlösning
+        private void BackupQuestions()
+        {
+            databas = new OrderedDictionary()
             {
                 {"Sverige", "Stockholm"},
                 {"Danmark", "Köpenhamn"},
@@ -32,11 +44,27 @@ namespace project_quiz
                 {"Österrike", "Wien" },
                 {"Tjeckien", "Prag" }
             };
+        }
 
-        public QuestionDatabase()
+        public async Task<bool> AddQuestionsFromFile()
         {
-            noQuestions = databas.Count;
-            noRightAnswear = 0;
+            
+
+            try
+            {
+                StorageFile databaseCapital = await AwaitDatabase();
+                string databasetext = await FileIO.ReadTextAsync(databaseCapital);
+                FormatDatabase(databasetext);
+
+                noQuestions = databas.Count;
+                noRightAnswear = 0;
+                return true;
+            }
+            catch (SystemException)
+            {
+                BackupQuestions();
+                return false;
+            }
         }
         public Deck MakeDeck()
         {
@@ -80,14 +108,6 @@ namespace project_quiz
             return newValues;
         }
 
-        public string PrintScore(int AnswearAsBool)
-        {
-            noRightAnswear += AnswearAsBool;
-            string s = $"{ noRightAnswear } / {noQuestions }";
-            return s;
-
-        }
-        //TODO - FIx
         public bool TestEqualAlternatives(String[]answear, String[] fel, int index)
         {
             if (answear[index] != fel[0] && answear[index] != fel[1])
@@ -107,6 +127,66 @@ namespace project_quiz
             }
         }
 
+        private void FormatDatabase(string database)
+        {
+            String[] pairs = database.Split(Environment.NewLine);
+            foreach (string pair in pairs)
+            {
+                String[] landStad = pair.Split(',');
+                databas.Add(landStad[0], landStad [1]);
+            }
+        }
 
+        public async void AddQuestionToDatabase(string country,string capital)
+        {
+            // lägg till i dictionary
+            /*
+            databas.Add(country, capital);
+            // skriv dictionary till fil som 
+            keyCollection = databas.Keys;
+            valueCollection = databas.Values;
+
+            String[] myKeys = new String[databas.Count];
+            String[] myValues = new String[databas.Count];
+
+            keyCollection.CopyTo(myKeys, 0);
+            valueCollection.CopyTo(myValues, 0);
+
+            string textToFile = "";
+            foreach(String countryKey in databas.Keys)
+            {
+
+                for (int i = 0; i < databas.Count; i++)
+                {
+                    textToFile = $"{Environment.NewLine}{myKeys[i]},{myValues[i]}";
+
+                    StorageFile capitalFile = await AwaitDatabase();
+                    await FileIO.AppendTextAsync(capitalFile, textToFile);
+                }
+                
+                //textToFile = $"{countryKey},{databas.}"
+            }*/
+            // land1,huvudstad1
+            // land2,huvudstad2
+            // ...
+            
+            string addedQuestion = $"{Environment.NewLine}{country},{capital}";
+            StorageFolder storagefolder = ApplicationData.Current.LocalFolder;
+            StorageFile databaseCapital = await storagefolder.GetFileAsync("databasecapital.txt");
+
+            await FileIO.AppendTextAsync(databaseCapital, addedQuestion);
+            
+        }
+        public async void RemoveQuestionsFromDatabase(string country)
+        {
+            
+        }
+
+        private async Task<StorageFile> AwaitDatabase()
+        {
+            StorageFolder storagefolder = ApplicationData.Current.LocalFolder;
+            StorageFile databaseCapital = await storagefolder.GetFileAsync("databasecapital.txt");
+            return databaseCapital;   
+        }
     }
 }

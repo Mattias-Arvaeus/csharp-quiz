@@ -13,6 +13,7 @@
             <StackPanel.RenderTransform>
                 <CompositeTransform SkewX="0.594" TranslateX="2.49"/>
             </StackPanel.RenderTransform>
+            <Button x:Name="Adminbutton" Content="Admin" Height="43" Width="76" Click="Adminbutton_Click"/>
             <TextBlock x:Name="Title" 
                        Text="Frågesport" 
                        FontSize="80"

@@ -42,7 +42,7 @@ namespace project_quiz
         {
 
         }
-        public bool IfListisZero()
+        public bool IfListIsZero()
         {
             if (questions.Count == 0)
             {
